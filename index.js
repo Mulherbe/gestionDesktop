@@ -24,16 +24,15 @@ function getUser(){
 
 }
 
-function getAllUser (){
+async function getAllUser (){
     var access_token = localStorage.getItem('acces_token');
     fetch('https://gestion.fred-dev.fr/api/users', {
         method: 'GET',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json', 'Authorization': 'Bearer ' +  access_token},
         }).then((response) => response.json())
         .then((responseData) => {
-            console.log(responseData)
-            responseData.forEach(              
-                user => createTab(user)
+            responseData.forEach(        
+                user =>(createTab(user) )
                 );
 
       }).catch((error) => {
@@ -42,10 +41,29 @@ function getAllUser (){
 }
 
 
-function createTab (user){ 
-    console.log(user)
-    maDiv = document.createElement("div");
+async function createTab (user){ 
+    
+    maDiv = document.createElement("tr");
     maDiv.id = user.id;
-    maDiv.innerHTML = '<div>'+ user.firstName + user.name + user.email + '</div>';
+    maDiv.innerHTML = '<tr><th scope="row">' + user.id + '</th><td>' +user.name + '</td><td>' + user.firstName + '</td><td>' + user.email+'</td></tr>'
     document.getElementById('containerTab').append(maDiv);
+}
+
+ function getCloudByUser (user){
+    var access_token = localStorage.getItem('acces_token');
+     return ( fetch('https://gestion.fred-dev.fr/api/getSizeCloudByUser' ,{
+        method: 'POST',
+        headers: { 'Accept': 'application/json','Content-Type': 'application/json'},
+        body: JSON.stringify({
+            id_user : 1,
+            })
+        }).then((response) => response.json() )
+        .then((responseData) => {
+            // console.log(responseData)
+        }).catch((error) => {
+            console.log(error);
+        })
+     )
+    
+
 }
