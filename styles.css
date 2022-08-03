@@ -1,3 +1,28 @@
 /* styles.css */
 
 /* Add styles here to customize the appearance of your app */
+.backgroundSoftDelete{
+    background-color: rgba(255, 6, 6, 0.164) !important;
+}
+body{
+
+    background-color: #eee; 
+}
+
+table th , table td{
+    text-align: center;
+}
+
+table tr:nth-child(even){
+    background-color: #eee
+}
+
+/* .pagination li:hover{
+    cursor: pointer;
+}
+		table tbody tr {
+			display: none;
+		} */
+        .sr-only{
+            margin-right:5px;
+        }
