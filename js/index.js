@@ -1,18 +1,21 @@
 
+
+// function get pagination
+
 function getPagination(table) {
     var lastPage = 1;
   
     $('#maxRows')
       .on('change', function(evt) {
-        //$('.paginationprev').html('');						// reset pagination
   
        lastPage = 1;
         $('.pagination')
           .find('li')
           .slice(1, -1)
           .remove();
-        var trnum = 0; // reset tr counter
-        var maxRows = parseInt($(this).val()); // get Max Rows from select option
+        var trnum = 0; // reset counter
+        var maxRows = parseInt($(this).val()); 
+        // Max Rows
   
         if (maxRows == 5000) {
           $('.pagination').hide();
@@ -22,7 +25,6 @@ function getPagination(table) {
   
         var totalRows = $(table + ' tbody tr').length; // numbers of rows
         $(table + ' tr:gt(0)').each(function() {
-          // each TR in  table and not the header
           trnum++; // Start Counter
           if (trnum > maxRows) {
             // if tr number gt maxRows
@@ -99,13 +101,9 @@ function getPagination(table) {
       .val(0)
       .change();
   
-    // end of on select change
-  
-    // END OF PAGINATION
   }
   
   function limitPagging(){
-      // alert($('.pagination li').length)
   
       if($('.pagination li').length > 7 ){
               if( $('.pagination li.active').attr('data-page') <= 3 ){
@@ -123,7 +121,6 @@ function getPagination(table) {
   }
   
   $(function() {
-    // Just to append id number for each row
     $('table tr:eq(0)').prepend('<th> ID </th>');
   
     var id = 0;
@@ -135,15 +132,14 @@ function getPagination(table) {
   });
   
   function searchFunction() {
-    // Declare variables
+
     var input, filter, table, tr, td, i, txtValue;
+
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
     table = document.getElementById("table-id");
     tr = table.getElementsByTagName("tr");
-  
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
+      for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[0];
       if (td) {
         txtValue = td.textContent || td.innerText;

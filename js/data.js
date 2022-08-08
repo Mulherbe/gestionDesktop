@@ -5,8 +5,7 @@ function getUser(){
     fetch('https://gestion.fred-dev.fr/api/login', {
         method: 'POST',
         headers: { 'Accept': 'application/json','Content-Type': 'application/json',},
-        body: JSON.stringify({ email :  'email@email.fr' , password : 'password',})
-        // body: JSON.stringify({ email :  email , password : password,})
+        body: JSON.stringify({ email :  email , password : password,})
         }).then((response) => response.json())
         .then((responseData) => {
           console.log(responseData)
@@ -42,7 +41,7 @@ async function getAllUser (){
 }
 
 
-async function createTab (user){ 
+ function createTab (user){ 
     maDiv = document.createElement("tr");
     maDiv.id = user.id;
     // console.log(user)
